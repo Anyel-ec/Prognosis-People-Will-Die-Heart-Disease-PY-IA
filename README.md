@@ -1,3 +1,7 @@
+# **Select Language:** 🌍
+- [Español (Spanish)](README-es.md)
+- [English](README.md)
+
 # Heart Failure Prediction Project
 
 ## Project Description
