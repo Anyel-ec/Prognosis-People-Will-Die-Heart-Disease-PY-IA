@@ -1,38 +1,38 @@
 # Heart Failure Prediction Project
 
-## Descripción del Proyecto
+## Project Description
 
-Este proyecto se enfoca en el pronóstico de la mortalidad en pacientes con enfermedades cardíacas. Utiliza un conjunto de datos que contiene varias características clínicas de los pacientes para entrenar y evaluar modelos de clasificación, con el objetivo de predecir si un paciente fallecerá debido a complicaciones cardíacas.
+This project focuses on predicting mortality in patients with heart disease. It utilizes a dataset containing various clinical features of patients to train and evaluate classification models, aiming to predict whether a patient will die due to heart-related complications.
 
-## Conjunto de Datos
+## Dataset
 
-El conjunto de datos utilizado en este proyecto se llama `heart_failure.csv` y contiene los siguientes campos:
+The dataset used in this project is called `heart_failure.csv` and contains the following fields:
 
-- `age`: Edad del paciente.
-- `anaemia`: Indicador de anemia (0: No, 1: Sí).
-- `creatinine_phosphokinase`: Nivel de la enzima creatina fosfoquinasa en sangre.
-- `diabetes`: Indicador de diabetes (0: No, 1: Sí).
-- `ejection_fraction`: Porcentaje de sangre que sale del corazón en cada contracción.
-- `high_blood_pressure`: Indicador de hipertensión (0: No, 1: Sí).
-- `platelets`: Número de plaquetas en la sangre.
-- `serum_creatinine`: Nivel de creatinina en sangre.
-- `serum_sodium`: Nivel de sodio en sangre.
-- `sex`: Sexo del paciente (0: Mujer, 1: Hombre).
-- `smoking`: Indicador de tabaquismo (0: No, 1: Sí).
-- `time`: Periodo de seguimiento (días).
-- `DEATH_EVENT`: Evento de muerte (0: No, 1: Sí).
+- `age`: Age of the patient.
+- `anaemia`: Indicator of anaemia (0: No, 1: Yes).
+- `creatinine_phosphokinase`: Level of the enzyme creatine phosphokinase in blood.
+- `diabetes`: Indicator of diabetes (0: No, 1: Yes).
+- `ejection_fraction`: Percentage of blood leaving the heart with each contraction.
+- `high_blood_pressure`: Indicator of high blood pressure (0: No, 1: Yes).
+- `platelets`: Number of platelets in the blood.
+- `serum_creatinine`: Level of creatinine in blood.
+- `serum_sodium`: Level of sodium in blood.
+- `sex`: Sex of the patient (0: Female, 1: Male).
+- `smoking`: Indicator of smoking (0: No, 1: Yes).
+- `time`: Follow-up period (days).
+- `DEATH_EVENT`: Death event (0: No, 1: Yes).
 
-## Instalación
+## Installation
 
-Para ejecutar el código, asegúrate de tener instaladas las siguientes bibliotecas de Python:
+To run the code, make sure you have the following Python libraries installed:
 
 ```bash
 pip install pandas scikit-learn
 ```
 
-## Uso
+## Usage
 
-### Árbol de Decisión
+### Decision Tree
 
 ```python
 import pandas as pd
@@ -40,27 +40,27 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 
-# Carga el conjunto de datos en un DataFrame de Pandas
+# Load the dataset into a Pandas DataFrame
 df = pd.read_csv('heart_failure.csv')
 
-# Asegúrate de que no haya valores nulos en el DataFrame
+# Ensure there are no missing values in the DataFrame
 df = df.dropna()
 
-# Divide los datos en características (X) y etiquetas (y)
-X = df.drop('DEATH_EVENT', axis=1)  # características
-y = df['DEATH_EVENT']  # etiquetas
+# Split the data into features (X) and labels (y)
+X = df.drop('DEATH_EVENT', axis=1)  # features
+y = df['DEATH_EVENT']  # labels
 
-# Divide los datos en conjuntos de entrenamiento y prueba
+# Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
 
-# Entrena el clasificador de árbol de decisiones
+# Train the decision tree classifier
 clf = DecisionTreeClassifier()
 clf.fit(X_train, y_train)
 
-# Realiza predicciones sobre los datos de prueba
+# Make predictions on the test data
 predictions = clf.predict(X_test)
 
-# Imprime el informe de clasificación
+# Print the classification report
 print(classification_report(y_test, predictions))
 ```
 
@@ -72,37 +72,37 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, precision_score
 
-# Carga el conjunto de datos en un DataFrame de Pandas
+# Load the dataset into a Pandas DataFrame
 df = pd.read_csv('heart_failure.csv')
 
-# Asegúrate de que no haya valores nulos en el DataFrame
+# Ensure there are no missing values in the DataFrame
 df = df.dropna()
 
-# Divide los datos en características (X) y etiquetas (y)
-X = df.drop('DEATH_EVENT', axis=1)  # características
-y = df['DEATH_EVENT']  # etiquetas
+# Split the data into features (X) and labels (y)
+X = df.drop('DEATH_EVENT', axis=1)  # features
+y = df['DEATH_EVENT']  # labels
 
-# Divide los datos en conjuntos de entrenamiento y prueba
+# Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
 
-# Entrena el clasificador SVM
+# Train the SVM classifier
 clf = SVC(kernel='linear')
 clf.fit(X_train, y_train)
 
-# Realiza predicciones sobre los datos de prueba
+# Make predictions on the test data
 predictions = clf.predict(X_test)
 
-# Calcula la precisión
+# Calculate the precision
 precision = precision_score(y_test, predictions, pos_label=1)
 
-# Imprime el informe de clasificación y la precisión
-print("Precisión:", precision)
+# Print the classification report and precision
+print("Precision:", precision)
 print(classification_report(y_test, predictions))
 ```
 
-## Resultados
+## Results
 
-### Árbol de Decisión
+### Decision Tree
 
 ```plaintext
               precision    recall  f1-score   support
@@ -118,7 +118,7 @@ weighted avg       0.66      0.67      0.65        60
 ### SVM
 
 ```plaintext
-Precisión: 0.8125
+Precision: 0.8125
               precision    recall  f1-score   support
 
            0       0.73      0.91      0.81        35
@@ -129,20 +129,20 @@ Precisión: 0.8125
 weighted avg       0.76      0.75      0.74        60
 ```
 
-### Interpretación de los Resultados
+### Interpretation of Results
 
-#### Árbol de Decisión
+#### Decision Tree
 
-- **Precisión (precision)**: Mide la proporción de verdaderos positivos entre todos los casos positivos predichos. Para la clase 1 (muerte), la precisión es 0.65, lo que significa que el 65% de las predicciones positivas son correctas.
-- **Recall (recall)**: Mide la proporción de verdaderos positivos entre todos los casos reales positivos. Para la clase 1, el recall es 0.44, indicando que el modelo identifica correctamente el 44% de los casos reales de muerte.
-- **F1-score**: Es la media armónica de la precisión y el recall. Un valor más alto indica un mejor equilibrio entre precisión y recall.
-- **Accuracy (exactitud)**: Proporción de predicciones correctas sobre el total de predicciones. En este caso, el modelo tiene una exactitud del 67%.
+- **Precision**: Measures the proportion of true positives among all positive predictions. For class 1 (death), the precision is 0.65, meaning 65% of positive predictions are correct.
+- **Recall**: Measures the proportion of true positives among all actual positive cases. For class 1, the recall is 0.44, indicating the model correctly identifies 44% of actual death cases.
+- **F1-score**: The harmonic mean of precision and recall. A higher value indicates a better balance between precision and recall.
+- **Accuracy**: The proportion of correct predictions out of the total predictions. In this case, the model has an accuracy of 67%.
 
 #### SVM
 
-- **Precisión (precision)**: La precisión para la clase 1 es 0.81, lo que significa que el 81% de las predicciones positivas son correctas.
-- **Recall (recall)**: El recall para la clase 1 es 0.52, indicando que el modelo identifica correctamente el 52% de los casos reales de muerte.
-- **F1-score**: La F1-score es mejor para la clase 0 que para la clase 1, lo que sugiere que el modelo es más efectivo en predecir correctamente los casos de supervivencia.
-- **Accuracy (exactitud)**: La exactitud del modelo es 75%, lo que indica una mejora con respecto al modelo de árbol de decisión.
+- **Precision**: The precision for class 1 is 0.81, meaning 81% of positive predictions are correct.
+- **Recall**: The recall for class 1 is 0.52, indicating the model correctly identifies 52% of actual death cases.
+- **F1-score**: The F1-score is better for class 0 than for class 1, suggesting the model is more effective at correctly predicting survival cases.
+- **Accuracy**: The model's accuracy is 75%, showing an improvement over the decision tree model.
 
-En general, aunque ambos modelos tienen sus ventajas, el modelo SVM muestra una mayor precisión en la predicción de eventos de muerte, aunque con un menor recall comparado con la precisión. Esto sugiere que el SVM es mejor en evitar falsos positivos, pero puede perder algunos casos positivos reales.
+Overall, while both models have their advantages, the SVM model shows higher precision in predicting death events, though with lower recall compared to precision. This suggests the SVM is better at avoiding false positives but may miss some true positive cases.
